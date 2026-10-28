@@ -1,6 +1,7 @@
 package com.example.campsitereservationapp.AppUI.DatabaseComponents.Documents
 
 import android.location.Location
+import com.google.firebase.firestore.DocumentId
 
 class Listing(
     var name: String,
@@ -12,4 +13,7 @@ class Listing(
     var tags: ArrayList<String>,
     var photoUrls: ArrayList<String>,
     var geoLocation: Location
-)
+){
+    @DocumentId
+    var id: String = ""
+}

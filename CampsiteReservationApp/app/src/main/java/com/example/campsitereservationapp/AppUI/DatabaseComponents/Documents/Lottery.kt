@@ -1,9 +1,10 @@
 package com.example.campsitereservationapp.AppUI.DatabaseComponents.Documents
 
 import com.google.firebase.firestore.DocumentId
+import java.time.LocalDate
 import java.util.Date
 
-class Lottery(var dates: ArrayList<Date>, val start: Date, val end: Date, var campsiteNames: ArrayList<String>) {
+class Lottery(var dates: ArrayList<LocalDate>, val start: LocalDate, val end: LocalDate, var campsiteIds: ArrayList<String>) {
 
     /** Firestore document id, populated automatically on read via [DocumentId]. */
     @DocumentId
