@@ -1,0 +1,37 @@
+name: Android Kotlin Unit Testing
+
+# 1. Trigger the workflow on pushes or pull requests to main/master branches
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+
+jobs:
+  test:
+    name: Run Unit Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      # 2. Check out the repository code onto the runner
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # 3. Set up the Java Development Kit (JDK) 
+      # Match the Java version required by your Android Studio / Gradle project (usually 17 or 21 for modern projects)
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: gradle
+
+      # 4. Make the Gradle wrapper executable
+      - name: Grant Execute Permission for Gradlew
+        run: chmod +x gradlew
+        working-directory: ./CampsiteReservationApp
+
+      # 5. Run your Kotlin unit tests using the Gradle Wrapper
+      - name: Run Local Unit Tests
+        run: ./gradlew build --configuration-cache
+        working-directory: ./CampsiteReservationApp
